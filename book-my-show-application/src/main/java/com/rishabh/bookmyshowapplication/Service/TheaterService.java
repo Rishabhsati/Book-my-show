@@ -29,6 +29,8 @@ public class TheaterService {
 //        theater.setNoOfScreens(addTheaterRequest.getNoOfScreens());
 
 //        new metod of creating object using builder annotaion which is provided by the lombok
+
+
         Theater theater = Theater.builder().theaterName(addTheaterRequest.getName())
                 .address(addTheaterRequest.getAddress())
                 .noOfScreens(addTheaterRequest.getNoOfScreens()).build();

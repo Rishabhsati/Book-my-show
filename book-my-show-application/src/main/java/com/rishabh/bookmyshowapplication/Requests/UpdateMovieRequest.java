@@ -6,5 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UpdateMovieRequest {
-    private int
+    private Integer movieId;
+    private double rating;
+    private double duration;
 }

@@ -1,8 +1,7 @@
 package com.rishabh.bookmyshowapplication.Controllers;
 
-import com.rishabh.bookmyshowapplication.Models.Theater;
-import com.rishabh.bookmyshowapplication.Requests.AddTheaterRequest;
-import com.rishabh.bookmyshowapplication.Service.TheaterService;
+import com.rishabh.bookmyshowapplication.Models.User;
+import com.rishabh.bookmyshowapplication.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,15 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("theater")
-public class TheaterController {
+@RequestMapping("user")
+public class UserController {
 
     @Autowired
-    private TheaterService theaterService;
+    private UserService userService;
 
-    @PostMapping("/addTheater")
-    public ResponseEntity<String> addTheater(@RequestBody AddTheaterRequest addTheaterRequest){
-        String response = theaterService.addTheater(addTheaterRequest);
+    @PostMapping("addUser")
+    public ResponseEntity<String> addUser(@RequestBody User user){
+        String response = userService.addUser(user);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
