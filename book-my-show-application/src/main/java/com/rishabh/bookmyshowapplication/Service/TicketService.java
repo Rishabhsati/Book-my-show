@@ -1,8 +1,18 @@
 package com.rishabh.bookmyshowapplication.Service;
 
 import com.rishabh.bookmyshowapplication.Exceptions.SeatUnavailableException;
-import com.rishabh.bookmyshowapplication.Models.*;
-import com.rishabh.bookmyshowapplication.Repository.*;
+import com.rishabh.bookmyshowapplication.Models.Movie;
+import com.rishabh.bookmyshowapplication.Models.Show;
+import com.rishabh.bookmyshowapplication.Models.ShowSeat;
+import com.rishabh.bookmyshowapplication.Models.Theater;
+import com.rishabh.bookmyshowapplication.Models.Ticket;
+import com.rishabh.bookmyshowapplication.Models.User;
+import com.rishabh.bookmyshowapplication.Repository.MovieRepository;
+import com.rishabh.bookmyshowapplication.Repository.ShowRepository;
+import com.rishabh.bookmyshowapplication.Repository.ShowSeatRepository;
+import com.rishabh.bookmyshowapplication.Repository.TheaterRepository;
+import com.rishabh.bookmyshowapplication.Repository.TicketRepository;
+import com.rishabh.bookmyshowapplication.Repository.UserRepository;
 import com.rishabh.bookmyshowapplication.Requests.BookTicketRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

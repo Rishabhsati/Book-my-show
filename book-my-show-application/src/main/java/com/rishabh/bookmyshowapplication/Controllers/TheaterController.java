@@ -1,6 +1,5 @@
 package com.rishabh.bookmyshowapplication.Controllers;
 
-import com.rishabh.bookmyshowapplication.Models.Theater;
 import com.rishabh.bookmyshowapplication.Requests.AddTheaterRequest;
 import com.rishabh.bookmyshowapplication.Service.TheaterService;
 import org.springframework.beans.factory.annotation.Autowired;
