@@ -7,7 +7,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+<<<<<<< HEAD
         <module name="Book-my-show-backend" />
+=======
+        <module name="Movie-Ticket-Booking-Backend" />
+>>>>>>> 593fa918fd0c85862a9d38ce31b6cab0d036655d
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -16,7 +20,11 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+<<<<<<< HEAD
       <module name="Book-my-show-backend" options="-parameters" />
+=======
+      <module name="Movie-Ticket-Booking-Backend" options="-parameters" />
+>>>>>>> 593fa918fd0c85862a9d38ce31b6cab0d036655d
     </option>
   </component>
 </project>
