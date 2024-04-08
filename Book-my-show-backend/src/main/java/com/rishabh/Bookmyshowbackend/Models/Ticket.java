@@ -27,5 +27,5 @@ public class Ticket {
 
     @JoinColumn
     @ManyToOne
-    private com.rishabh.bookmyshowapplication.Models.User user;
+    private User user;
 }

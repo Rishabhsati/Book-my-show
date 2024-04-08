@@ -9,11 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.rishabh</groupId>
-<<<<<<< HEAD:Book-my-show-backend/pom.xml
 	<artifactId>Book-my-show-backend</artifactId>
-=======
-	<artifactId>Movie-Ticket-Booking-Backend</artifactId>
->>>>>>> 593fa918fd0c85862a9d38ce31b6cab0d036655d:book-my-show-application/pom.xml
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Book-my-show-backend</name>
 	<description>Demo project for Spring Boot</description>

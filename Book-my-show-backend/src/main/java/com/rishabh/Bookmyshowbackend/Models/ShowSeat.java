@@ -27,5 +27,5 @@ public class ShowSeat {
 
     @ManyToOne
     @JoinColumn
-    private com.rishabh.bookmyshowapplication.Models.Show show;
+    private Show show;
 }

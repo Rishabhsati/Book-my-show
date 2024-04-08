@@ -1,26 +1,9 @@
 package com.rishabh.Bookmyshowbackend.Service;
 
-<<<<<<< HEAD:Book-my-show-backend/src/main/java/com/rishabh/Bookmyshowbackend/Service/TicketService.java
 import com.rishabh.Bookmyshowbackend.Exceptions.SeatUnavailableException;
 import com.rishabh.Bookmyshowbackend.Models.*;
 import com.rishabh.Bookmyshowbackend.Repository.*;
 import com.rishabh.Bookmyshowbackend.Requests.BookTicketRequest;
-=======
-import com.rishabh.bookmyshowapplication.Exceptions.SeatUnavailableException;
-import com.rishabh.bookmyshowapplication.Models.Movie;
-import com.rishabh.bookmyshowapplication.Models.Show;
-import com.rishabh.bookmyshowapplication.Models.ShowSeat;
-import com.rishabh.bookmyshowapplication.Models.Theater;
-import com.rishabh.bookmyshowapplication.Models.Ticket;
-import com.rishabh.bookmyshowapplication.Models.User;
-import com.rishabh.bookmyshowapplication.Repository.MovieRepository;
-import com.rishabh.bookmyshowapplication.Repository.ShowRepository;
-import com.rishabh.bookmyshowapplication.Repository.ShowSeatRepository;
-import com.rishabh.bookmyshowapplication.Repository.TheaterRepository;
-import com.rishabh.bookmyshowapplication.Repository.TicketRepository;
-import com.rishabh.bookmyshowapplication.Repository.UserRepository;
-import com.rishabh.bookmyshowapplication.Requests.BookTicketRequest;
->>>>>>> 593fa918fd0c85862a9d38ce31b6cab0d036655d:book-my-show-application/src/main/java/com/rishabh/bookmyshowapplication/Service/TicketService.java
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -83,7 +66,6 @@ public class TicketService {
         }
 
 //        save the ticket entity
-
         User user = userRepository.findUserByMobNo(bookTicketRequest.getMobNo());
         Ticket ticket = Ticket.builder().user(user).showDate(bookTicketRequest.getShowDate())
                 .movieName(bookTicketRequest.getMovieName())

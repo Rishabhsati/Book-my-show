@@ -27,9 +27,9 @@ public class Show {
 
     @ManyToOne
     @JoinColumn
-    private com.rishabh.bookmyshowapplication.Models.Movie movie;
+    private Movie movie;
 
     @ManyToOne
     @JoinColumn
-    private com.rishabh.bookmyshowapplication.Models.Theater theater;
+    private Theater theater;
 }
