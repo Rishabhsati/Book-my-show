@@ -26,4 +26,6 @@ public class MovieController {
         String response = movieService.updateMovie(updateMovieRequest);
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
+
+
 }

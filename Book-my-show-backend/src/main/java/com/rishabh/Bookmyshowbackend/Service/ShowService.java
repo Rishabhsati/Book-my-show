@@ -71,4 +71,11 @@ public class ShowService {
         showSeatRepository.saveAll(showSeatList);
         return "Show seats have been generated for the given showId " + showId;
     }
+
+    public List<Show> getShowByMovie(String movieName) {
+        Movie movie = movieRepository.findMovieByMovieName(movieName);
+        List<Show> list = new ArrayList<>();
+        list.addAll(showRepository.findShowByMovie(movie));
+        return list;
+    }
 }
