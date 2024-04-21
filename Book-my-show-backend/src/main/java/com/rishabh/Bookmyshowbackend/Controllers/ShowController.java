@@ -1,6 +1,7 @@
 package com.rishabh.Bookmyshowbackend.Controllers;
 
-import com.rishabh.Bookmyshowbackend.Models.Show;
+import com.rishabh.Bookmyshowbackend.DTOs.ShowByMovieDto;
+import com.rishabh.Bookmyshowbackend.DTOs.ShowByTheaterDto;
 import com.rishabh.Bookmyshowbackend.Requests.AddShowRequest;
 import com.rishabh.Bookmyshowbackend.Requests.AddShowSeatRequest;
 import com.rishabh.Bookmyshowbackend.Service.ShowService;
@@ -31,8 +32,21 @@ public class ShowController {
     }
 
     @GetMapping("/getShowByMovie")
-    public ResponseEntity<List<Show>> getShowByMovie(@RequestParam String movieName){
-        List<Show> list = showService.getShowByMovie(movieName);
-        return new ResponseEntity<>(list,HttpStatus.OK);
+    public ResponseEntity<List<ShowByMovieDto>> getShowByMovie(@RequestParam String movieName){
+        try{
+            List<ShowByMovieDto> list = showService.getShowByMovie(movieName);
+            return new ResponseEntity(list,HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    public ResponseEntity<List<ShowByTheaterDto>> getShowByTheater(@RequestParam String theaterName){
+        try{
+            List<ShowByTheaterDto> list = showService.getShowByTheater(theaterName);
+            return new ResponseEntity(list,HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 }

@@ -1,5 +1,7 @@
 package com.rishabh.Bookmyshowbackend.Service;
 
+import com.rishabh.Bookmyshowbackend.DTOs.ShowByMovieDto;
+import com.rishabh.Bookmyshowbackend.DTOs.ShowByTheaterDto;
 import com.rishabh.Bookmyshowbackend.Enums.SeatType;
 import com.rishabh.Bookmyshowbackend.Models.*;
 import com.rishabh.Bookmyshowbackend.Repository.*;
@@ -72,10 +74,27 @@ public class ShowService {
         return "Show seats have been generated for the given showId " + showId;
     }
 
-    public List<Show> getShowByMovie(String movieName) {
-        Movie movie = movieRepository.findMovieByMovieName(movieName);
-        List<Show> list = new ArrayList<>();
-        list.addAll(showRepository.findShowByMovie(movie));
-        return list;
+    public List<ShowByMovieDto> getShowByMovie(String movieName) throws Exception{
+        List<Show> list = showRepository.findAll();
+        List<ShowByMovieDto> ansList = new ArrayList<>();
+        for (Show show:list) {
+            Movie movie = show.getMovie();
+            if(movie.getMovieName().equals(movieName)){
+                Theater theater = show.getTheater();
+
+                ShowByMovieDto showByMovieDto = new ShowByMovieDto();
+                showByMovieDto.setShowDate(show.getShowDate());
+                showByMovieDto.setShowTime(show.getShowTime());
+                showByMovieDto.setTheaterName(theater.getTheaterName());
+                showByMovieDto.setTheaterAdd(theater.getAddress());
+                ansList.add(showByMovieDto);
+            }
+        }
+        return ansList;
+    }
+
+    public List<ShowByTheaterDto> getShowByTheater(String theaterName) {
+        List<ShowByTheaterDto> ansList = new ArrayList<>();
+        return ansList;
     }
 }
