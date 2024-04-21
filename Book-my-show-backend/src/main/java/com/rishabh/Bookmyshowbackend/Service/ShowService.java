@@ -77,11 +77,12 @@ public class ShowService {
     public List<ShowByMovieDto> getShowByMovie(String movieName) throws Exception{
         List<Show> list = showRepository.findAll();
         List<ShowByMovieDto> ansList = new ArrayList<>();
+        boolean flag = false;
         for (Show show:list) {
             Movie movie = show.getMovie();
             if(movie.getMovieName().equals(movieName)){
+                flag = true;
                 Theater theater = show.getTheater();
-
                 ShowByMovieDto showByMovieDto = new ShowByMovieDto();
                 showByMovieDto.setShowDate(show.getShowDate());
                 showByMovieDto.setShowTime(show.getShowTime());
@@ -89,6 +90,9 @@ public class ShowService {
                 showByMovieDto.setTheaterAdd(theater.getAddress());
                 ansList.add(showByMovieDto);
             }
+        }
+        if(!flag){
+            throw new Exception("Shows are not available");
         }
         return ansList;
     }
