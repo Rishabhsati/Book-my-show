@@ -10,6 +10,8 @@ import com.rishabh.Bookmyshowbackend.Requests.AddShowSeatRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,7 +82,7 @@ public class ShowService {
         boolean flag = false;
         for (Show show:list) {
             Movie movie = show.getMovie();
-            if(movie.getMovieName().equals(movieName)){
+            if((movie!=null) && movie.getMovieName().equals(movieName)){
                 flag = true;
                 Theater theater = show.getTheater();
                 ShowByMovieDto showByMovieDto = new ShowByMovieDto();
@@ -92,13 +94,32 @@ public class ShowService {
             }
         }
         if(!flag){
-            throw new Exception("Shows are not available");
+            throw new Exception("Shows are not available "+ movieName);
         }
         return ansList;
     }
 
-    public List<ShowByTheaterDto> getShowByTheater(String theaterName) {
+    public List<ShowByTheaterDto> getShowByTheater(String theaterName) throws Exception{
         List<ShowByTheaterDto> ansList = new ArrayList<>();
+        List<Show> list = showRepository.findAll();
+        boolean flag = false;
+        for (Show show:list) {
+            Theater theater = show.getTheater();
+            if((show.getMovie()!=null)&& (theater!=null) && theater.getTheaterName().equals(theaterName)){
+                flag = true;
+                Movie movie = show.getMovie();
+                ShowByTheaterDto showByTheaterDto = new ShowByTheaterDto();
+
+                showByTheaterDto.setMovieName(movie.getMovieName());
+                showByTheaterDto.setTheaterAdd(theater.getAddress());
+                showByTheaterDto.setShowDate(show.getShowDate());
+                showByTheaterDto.setShowTime(show.getShowTime());
+                ansList.add(showByTheaterDto);
+            }
+        }
+        if(!flag){
+            throw new Exception("Shows are not available " + theaterName);
+        }
         return ansList;
     }
 }
