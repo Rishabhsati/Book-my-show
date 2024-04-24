@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class TicketService {
@@ -24,9 +25,6 @@ public class TicketService {
     private ShowSeatRepository showSeatRepository;
     @Autowired
     private UserRepository userRepository;
-
-    public TicketService() {
-    }
 
     public Ticket bookTicket(BookTicketRequest bookTicketRequest) throws Exception{
 //      1.  calculate the total cost of the tickets
@@ -70,12 +68,52 @@ public class TicketService {
         Ticket ticket = Ticket.builder().user(user).showDate(bookTicketRequest.getShowDate())
                 .movieName(bookTicketRequest.getMovieName())
                 .showTime(bookTicketRequest.getShowTime())
-                .theaterNameAndAddress(theater.getTheaterName() + " " + theater.getAddress())
+                .theaterName(theater.getTheaterName())
+                .theaterAddress(theater.getAddress())
                 .totalAmountPaid(totalAmount).build();
 
         ticket = ticketRepository.save(ticket);
 
 //        Generate and return the ticket response
         return ticket;
+    }
+
+    public Ticket cancelTicket(UUID ticketId) throws Exception{
+        String ticketId1 = ticketId.toString();
+        List<Ticket> ticketList = ticketRepository.findAll();
+
+        Ticket currTicket = null;
+
+        for(Ticket ticket : ticketList){
+            String id = ticket.getTicketId().toString();
+            if(ticketId1.equals(id)){
+                currTicket = ticket;
+                break;
+            }
+        }
+
+        if(currTicket == null){
+            throw new Exception("Ticket not found");
+        }
+
+
+        Theater theater = theaterRepository.findTheaterByTheaterName(currTicket.getTheaterName());
+        Movie movie = movieRepository.findMovieByMovieName(currTicket.getMovieName());
+
+        Show show = showRepository.findShowByShowDateAndShowTimeAndMovieAndTheater(currTicket.getShowDate(),currTicket.getShowTime(),movie,theater);
+
+        List<ShowSeat> showSeatList = showSeatRepository.findAllByShow(show);
+
+        for(ShowSeat seat : showSeatList){
+            for(String seat1 : currTicket.getSeatList()){
+                if(seat.getSeatNo().equals(seat1)) {
+                    seat.setAvailable(true);
+                    showSeatRepository.save(seat);
+//                    break; // Assuming only one ticket per seat
+                }
+            }
+        }
+        ticketRepository.delete(currTicket);
+        return currTicket;
     }
 }

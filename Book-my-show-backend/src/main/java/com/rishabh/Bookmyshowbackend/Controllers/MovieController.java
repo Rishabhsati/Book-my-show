@@ -27,5 +27,4 @@ public class MovieController {
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
 
-
 }

@@ -8,8 +8,10 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
+@Table(name="tickets")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,8 +24,10 @@ public class Ticket {
     private String movieName;
     private LocalDate showDate;
     private LocalTime showTime;
-    private String theaterNameAndAddress;
+    private String theaterName;
+    private String theaterAddress;
     private double totalAmountPaid;
+    private List<String> SeatList;
 
     @JoinColumn
     @ManyToOne

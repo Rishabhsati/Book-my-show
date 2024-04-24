@@ -33,4 +33,23 @@ public class UserService {
 
         return "user has been added to the db with the userId "+user.getUserId();
     }
+
+    public String updatePassword(String yourPassword, String newPassword,String mobileNo) throws Exception{
+        User user = null;
+        user = userRepository.findUserByMobNo(mobileNo);
+        if(!user.getPassword().equals(yourPassword)) throw new Exception("password does not matched ");
+        user.setPassword(newPassword);
+        userRepository.save(user);
+
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setSubject("Welcome to your Movie Booking Application");
+        message.setFrom("jc095623@gmail.com");
+        message.setTo(user.getEmailId());
+        String body = "Hello " + user.getName() + "!!" + "\n" +
+                "Your password has been changed, if it is not done by you then take security actions";
+        message.setText(body);
+
+        javaMailSender.send(message);
+        return "password has been changed successfully";
+    }
 }

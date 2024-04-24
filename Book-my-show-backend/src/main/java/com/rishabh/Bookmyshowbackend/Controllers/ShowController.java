@@ -41,6 +41,7 @@ public class ShowController {
         }
     }
 
+    @GetMapping("/getShowByTheater")
     public ResponseEntity<List<ShowByTheaterDto>> getShowByTheater(@RequestParam String theaterName){
         try{
             List<ShowByTheaterDto> list = showService.getShowByTheater(theaterName);

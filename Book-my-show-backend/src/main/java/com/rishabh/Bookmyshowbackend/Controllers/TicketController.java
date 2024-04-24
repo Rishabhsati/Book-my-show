@@ -6,10 +6,9 @@ import com.rishabh.Bookmyshowbackend.Service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("ticket")
@@ -26,6 +25,19 @@ public class TicketController {
         }
         catch (Exception e){
             String errMsg = "Error while booking your ticket " + e.getMessage();
+            return new ResponseEntity<>(errMsg,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("cancleTicket")
+    public ResponseEntity cancleTicket(@RequestParam UUID ticketId) throws Exception {
+        try{
+            ticketService.cancelTicket(ticketId);
+            String response = "Your ticket has been cancled successfully with the ticket id : " + ticketId;
+            return  new ResponseEntity<>(response, HttpStatus.OK);
+        }
+        catch (Exception e){
+            String errMsg = "Error while cancling your ticket " + e.getMessage();
             return new ResponseEntity<>(errMsg,HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
